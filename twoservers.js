@@ -1,13 +1,25 @@
 var http = require("http");
 
-var PORT = 7000;
+var portOne = 7000;
 
-function handleRequest(request, response) {
-    response.end("It works - path: " + request.url);
+var portTwo = 7500;
+
+function handleRequestOne(request, response) {
+    response.end("Port one - It works - path: " + request.url);
 }
 
-var server = http.createServer(handleRequest);
+function handleRequestTwo(request, response) {
+    response.end("Port two - it works - path: " + request.url);
+}
 
-server.listen(PORT, function(){
-    console.log("you rock!" + PORT);
+var serverOne = http.createServer(handleRequestOne);
+
+var serverTwo = http.createServer(handleRequestTwo);
+
+serverOne.listen(portOne, function(){
+    console.log("you rock!" + portOne);
+})
+
+serverTwo.listen(portTwo, function(){
+    console.log("study more!" + portTwo);
 })
